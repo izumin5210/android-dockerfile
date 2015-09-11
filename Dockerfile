@@ -42,3 +42,5 @@ RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-armeabi
 RUN echo no | android create avd --force -n android-23 -t android-23 --abi armeabi-v7a
 
 RUN apt-get clean
+
+ADD wait-for-emulator /usr/loca/bin
