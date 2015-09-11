@@ -33,3 +33,5 @@ RUN rm android-sdk_r$ANDROID_SDK_REVISION-linux.tgz
 RUN echo "y" | android update sdk --no-ui --force --filter platform-tools
 RUN echo "y" | android update sdk --no-ui --force --filter android-$ANDROID_PLATFORM_VERSION
 RUN echo "y" | android update sdk --no-ui --force --filter build-tools-$ANDROID_BUILD_TOOOS_REVISION
+
+RUN apt-get clean
