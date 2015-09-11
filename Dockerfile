@@ -39,5 +39,6 @@ RUN echo "y" | android update sdk --no-ui --force --filter platform-tools
 RUN echo "y" | android update sdk --no-ui --force --filter build-tools-$ANDROID_BUILD_TOOOS_REVISION
 RUN echo "y" | android update sdk --no-ui --force --filter android-$ANDROID_PLATFORM_VERSION
 RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-armeabi-v7a-android-$ANDROID_PLATFORM_VERSION
+RUN echo no | android create avd --force -n android-23 -t android-23 --abi armeabi-v7a
 
 RUN apt-get clean
