@@ -20,7 +20,7 @@ RUN apt-get -y install openjdk-7-jdk
 
 RUN curl -L -O "http://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"
 RUN unzip -o "gradle-$GRADLE_VERSION-all.zip"
-RUN mv "gradle-$GRADLE_VERSION" /usr/local/gradle
+RUN mv "gradle-$GRADLE_VERSION" "/usr/local/gradle-$GRADLE_VERSION"
 ENV GRADLE_HOME "/usr/local/gradle-$GRADLE_VERSION"
 ENV PATH $PATH:$GRADLE_HOME/bin
 
