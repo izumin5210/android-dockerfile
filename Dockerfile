@@ -34,8 +34,10 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 
 RUN rm android-sdk_r$ANDROID_SDK_REVISION-linux.tgz
 
+RUN echo "y" | android update sdk --no-ui --force --filter tools
 RUN echo "y" | android update sdk --no-ui --force --filter platform-tools
-RUN echo "y" | android update sdk --no-ui --force --filter android-$ANDROID_PLATFORM_VERSION
 RUN echo "y" | android update sdk --no-ui --force --filter build-tools-$ANDROID_BUILD_TOOOS_REVISION
+RUN echo "y" | android update sdk --no-ui --force --filter android-$ANDROID_PLATFORM_VERSION
+RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-armeabi-v7a-android-$ANDROID_PLATFORM_VERSION
 
 RUN apt-get clean
