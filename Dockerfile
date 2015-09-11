@@ -32,6 +32,7 @@ ENV ANDROID_HOME /usr/local/android-sdk
 ENV PATH $PATH:$ANDROID_HOME/tools
 ENV PATH $PATH:$ANDROID_HOME/platform-tools
 
+RUN rm gradle-$GRADLE_VERSION-all.zip
 RUN rm android-sdk_r$ANDROID_SDK_REVISION-linux.tgz
 
 RUN echo "y" | android update sdk --no-ui --force --filter tools
