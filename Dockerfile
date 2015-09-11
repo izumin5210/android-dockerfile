@@ -39,7 +39,7 @@ RUN echo "y" | android update sdk --no-ui --force --filter platform-tools
 RUN echo "y" | android update sdk --no-ui --force --filter build-tools-$ANDROID_BUILD_TOOOS_REVISION
 RUN echo "y" | android update sdk --no-ui --force --filter android-$ANDROID_PLATFORM_VERSION
 RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-x86_64-android-$ANDROID_PLATFORM_VERSION
-RUN echo no | android create avd --force -n android-$ANDROID_PLATFORM_VERSION -t android-$ANDROID_PLATFORM_VERSION --abi x86_64
+RUN echo no | android create avd --force -n emulator -t android-$ANDROID_PLATFORM_VERSION --abi x86_64
 
 RUN apt-get clean
 
