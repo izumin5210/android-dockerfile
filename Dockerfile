@@ -21,6 +21,8 @@ RUN apt-get -y install openjdk-7-jdk
 RUN curl -L -O "http://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"
 RUN unzip -o "gradle-$GRADLE_VERSION-all.zip"
 RUN mv "gradle-$GRADLE_VERSION" /usr/local/gradle
+ENV GRADLE_HOME "/usr/local/gradle-$GRADLE_VERSION"
+ENV PATH $PATH:$GRADLE_HOME/bin
 
 RUN curl -L -O "http://dl.google.com/android/android-sdk_r$ANDROID_SDK_REVISION-linux.tgz"
 RUN tar -xvzf "android-sdk_r$ANDROID_SDK_REVISION-linux.tgz"
