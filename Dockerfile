@@ -35,13 +35,12 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 RUN rm gradle-$GRADLE_VERSION-all.zip
 RUN rm android-sdk_r$ANDROID_SDK_REVISION-linux.tgz
 
-RUN echo "y" | android update sdk --no-ui --force --filter tools
 RUN echo "y" | android update sdk --no-ui --force --filter platform-tools
 RUN echo "y" | android update sdk --no-ui --force --filter build-tools-$ANDROID_BUILD_TOOOS_REVISION
 RUN echo "y" | android update sdk --no-ui --force --filter android-$ANDROID_PLATFORM_VERSION
-RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-armeabi-v7a-android-$ANDROID_PLATFORM_VERSION
-RUN echo no | android create avd --force -n android-23 -t android-23 --abi armeabi-v7a
+RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-x86_64-android-$ANDROID_PLATFORM_VERSION
+RUN echo no | android create avd --force -n android-$ANDROID_PLATFORM_VERSION -t android-$ANDROID_PLATFORM_VERSION --abi x86_64
 
 RUN apt-get clean
 
-ADD wait-for-emulator /usr/loca/bin
+COPY wait-for-emulator /usr/local/bin
