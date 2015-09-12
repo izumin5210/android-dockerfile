@@ -4,11 +4,6 @@ FROM debian:jessie
 
 MAINTAINER izumin5210 <masayuki@izumin.info>
 
-ENV GRADLE_VERSION 2.6
-ENV ANDROID_SDK_REVISION 24.3.4
-ENV ANDROID_BUILD_TOOOS_REVISION 23.0.1
-ENV ANDROID_PLATFORM_VERSION 23
-
 RUN dpkg --add-architecture i386
 RUN apt-get update
 RUN apt-get -y install curl
@@ -17,6 +12,13 @@ RUN apt-get -y install libncurses5:i386
 RUN apt-get -y install libstdc++6:i386
 RUN apt-get -y install zlib1g:i386
 RUN apt-get -y install openjdk-7-jdk
+
+ENV GRADLE_VERSION 2.6
+ENV ANDROID_SDK_REVISION 24.3.4
+ENV ANDROID_BUILD_TOOOS_REVISION 23.0.1
+ENV ANDROID_PLATFORM_VERSION 23
+ENV ANDROID_EMULATOR_ABI armeabi-v7a
+ENV ANDROID_EMULATOR_TARGET_NAME android-emulator
 
 RUN curl -L -O "http://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip"
 RUN unzip -o "gradle-$GRADLE_VERSION-all.zip"
