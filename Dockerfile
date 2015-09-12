@@ -43,4 +43,5 @@ RUN echo no | android create avd --force -n emulator -t android-$ANDROID_PLATFOR
 
 RUN apt-get clean
 
-COPY wait-for-emulator /usr/local/bin
+COPY wait-for-emulator /usr/local/bin/
+COPY start-emulator /usr/local/bin/
