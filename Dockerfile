@@ -35,11 +35,13 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 RUN rm gradle-$GRADLE_VERSION-all.zip
 RUN rm android-sdk_r$ANDROID_SDK_REVISION-linux.tgz
 
-RUN echo "y" | android update sdk --no-ui --force --filter platform-tools
-RUN echo "y" | android update sdk --no-ui --force --filter build-tools-$ANDROID_BUILD_TOOOS_REVISION
-RUN echo "y" | android update sdk --no-ui --force --filter android-$ANDROID_PLATFORM_VERSION
-RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-x86_64-android-$ANDROID_PLATFORM_VERSION
-RUN echo no | android create avd --force -n emulator -t android-$ANDROID_PLATFORM_VERSION --abi x86_64
+RUN echo "y" | android update sdk --no-ui --all --force --filter platform-tools
+RUN echo "y" | android update sdk --no-ui --all --force --filter build-tools-$ANDROID_BUILD_TOOOS_REVISION
+RUN echo "y" | android update sdk --no-ui --all --force --filter extra-google-m2repository
+RUN echo "y" | android update sdk --no-ui --all --force --filter extra-android-support
+RUN echo "y" | android update sdk --no-ui --all --force --filter extra-android-m2repository
+RUN echo "y" | android update sdk --no-ui --all --force --filter android-$ANDROID_PLATFORM_VERSION
+RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-$ANDROID_EMULATOR_ABI-android-$ANDROID_PLATFORM_VERSION
 
 RUN apt-get clean
 
