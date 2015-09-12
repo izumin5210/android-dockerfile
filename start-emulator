@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-if [ $# -gt 0 ]; then
-  CMD=$1
-  PORT=5554
-  echo "Starting emulator[$PORT]..."
-  emulator64-arm -avd emulator -no-skin -no-audio -no-window -port $PORT &
-  wait-for-emulator
-  $CMD
-else
-  echo "No command is specified"
-fi
+echo no | android create avd --force -n $ANDROID_EMULATOR_TARGET_NAME -t 1 --abi $ANDROID_EMULATOR_ABI
+echo "hw.keyboard=yes" >> ~/.android/avd/$ANDROID_EMULATOR_TARGET_NAME.avd/config.ini
+echo "Enabled hardware keyboard"
+android list avds
+cat ~/.android/avd/$ANDROID_EMULATOR_TARGET_NAME.avd/config.ini
+emulator64-arm -avd $ANDROID_EMULATOR_TARGET_NAME -no-audio -no-window &
+wait-for-emulator
