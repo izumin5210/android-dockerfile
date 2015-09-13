@@ -1,17 +1,18 @@
 # Version 1.0
 
-FROM debian:jessie
+FROM java:openjdk-7-jdk
 
 MAINTAINER izumin5210 <masayuki@izumin.info>
 
 RUN dpkg --add-architecture i386
 RUN apt-get update
-RUN apt-get -y install curl
-RUN apt-get -y install unzip
-RUN apt-get -y install libncurses5:i386
-RUN apt-get -y install libstdc++6:i386
-RUN apt-get -y install zlib1g:i386
-RUN apt-get -y install openjdk-7-jdk
+RUN apt-get -y install \
+        curl \
+        unzip \
+        libncurses5:i386 \
+        libstdc++6:i386 \
+        zlib1g:i386
+RUN apt-get clean
 
 ENV GRADLE_VERSION 2.6
 ENV ANDROID_SDK_REVISION 24.3.4
@@ -45,7 +46,6 @@ RUN echo "y" | android update sdk --no-ui --all --force --filter extra-android-m
 RUN echo "y" | android update sdk --no-ui --all --force --filter android-$ANDROID_PLATFORM_VERSION
 RUN echo "y" | android update sdk --no-ui --all --force --filter sys-img-$ANDROID_EMULATOR_ABI-android-$ANDROID_PLATFORM_VERSION
 
-RUN apt-get clean
 
 COPY wait-for-emulator /usr/local/bin/
 COPY start-emulator /usr/local/bin/
