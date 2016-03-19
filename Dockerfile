@@ -65,7 +65,7 @@ RUN echo y | android update sdk --no-ui --all --force --filter \
     && echo y | android update sdk --no-ui --all --force --filter \
         extra-google-m2repository,extra-android-support,extra-android-m2repository \
     && echo y | android update sdk --no-ui --all --force --filter \
-        sys-img-$ANDROID_EMULATOR_ABI-android-$ANDROID_EMULATOR_TARGET_VERSION
+        sys-img-$ANDROID_EMULATOR_ABI-android-$ANDROID_PLATFORM_VERSION
 
 
 # ================================================================
