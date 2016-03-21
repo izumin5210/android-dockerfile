@@ -55,7 +55,7 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 # android sdk components
 # ================================================================
 
-ENV ANDROID_BUILD_TOOOS_REVISION 23.0.1
+ENV ANDROID_BUILD_TOOOS_REVISION 23.0.2
 ENV ANDROID_PLATFORM_VERSION 23
 ENV ANDROID_EMULATOR_ABI armeabi-v7a
 ENV ANDROID_EMULATOR_TARGET_NAME android-emulator
