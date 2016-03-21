@@ -1,6 +1,6 @@
 # Version 1.0
 
-FROM java:openjdk-7-jdk
+FROM java:openjdk-8-jdk
 
 MAINTAINER izumin5210 <masayuki@izumin.info>
 
