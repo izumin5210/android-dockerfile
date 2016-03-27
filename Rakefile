@@ -1,7 +1,10 @@
 require 'rake'
 require 'rspec/core/rake_task'
+require 'yaml'
+require_relative './lib/android_docker_image'
 
 task :spec    => 'spec:all'
+task :build   => 'build:all'
 task :default => :spec
 
 namespace :spec do
@@ -22,6 +25,26 @@ namespace :spec do
     RSpec::Core::RakeTask.new(target.to_sym) do |t|
       ENV['TARGET_HOST'] = original_target
       t.pattern = "spec/#{original_target}/*_spec.rb"
+    end
+  end
+end
+
+namespace :build do
+  opts = YAML.load_file("build-args.yml")
+  images = AndroidDockerImage.load(opts)
+
+  task :all => images.map(&:tag)
+
+  images.each do |image|
+    desc "build #{image.fullname} image and push it"
+    task image.tag do
+      sh <<~CMD
+        docker build \
+          --build-arg ANDROID_BUILD_TOOLS_REVISION=#{image.build_tools} \
+          --build-arg ANDROID_PLATFORM_VERSION=#{image.target_api} \
+          -t #{image.fullname} \
+          .
+      CMD
     end
   end
 end
