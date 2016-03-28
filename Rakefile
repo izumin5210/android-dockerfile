@@ -3,8 +3,14 @@ require 'rspec/core/rake_task'
 require 'yaml'
 require_relative './lib/android_docker_image'
 
+def images
+  opts = YAML.load_file("build-args.yml")
+  AndroidDockerImage.load(opts)
+end
+
 task :spec    => 'spec:all'
 task :build   => 'build:all'
+task :push    => 'push:all'
 task :default => :spec
 
 namespace :spec do
@@ -30,13 +36,10 @@ namespace :spec do
 end
 
 namespace :build do
-  opts = YAML.load_file("build-args.yml")
-  images = AndroidDockerImage.load(opts)
-
   task :all => images.map(&:tag)
 
   images.each do |image|
-    desc "build #{image.fullname} image and push it"
+    desc "Build #{image.fullname} image"
     task image.tag do
       sh <<~CMD
         docker build \
@@ -45,6 +48,17 @@ namespace :build do
           -t #{image.fullname} \
           .
       CMD
+    end
+  end
+end
+
+namespace :push do
+  task :all => images.map(&:tag)
+
+  images.each do |image|
+    desc "Push #{image.fullname} image"
+    task image.tag do
+      sh "docker push #{image.fullname}"
     end
   end
 end
