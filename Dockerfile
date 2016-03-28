@@ -4,6 +4,8 @@ FROM java:openjdk-8-jdk
 
 MAINTAINER izumin5210 <masayuki@izumin.info>
 
+ARG ANDROID_BUILD_TOOLS_REVISION
+ARG ANDROID_PLATFORM_VERSION
 
 # ================================================================
 # apt
@@ -55,13 +57,11 @@ ENV PATH $PATH:$ANDROID_HOME/platform-tools
 # android sdk components
 # ================================================================
 
-ENV ANDROID_BUILD_TOOOS_REVISION 23.0.2
-ENV ANDROID_PLATFORM_VERSION 23
 ENV ANDROID_EMULATOR_ABI armeabi-v7a
 ENV ANDROID_EMULATOR_TARGET_NAME android-emulator
 
 RUN echo y | android update sdk --no-ui --all --force --filter \
-        platform-tools,build-tools-$ANDROID_BUILD_TOOOS_REVISION,android-$ANDROID_PLATFORM_VERSION \
+        platform-tools,build-tools-$ANDROID_BUILD_TOOLS_REVISION,android-$ANDROID_PLATFORM_VERSION \
     && echo y | android update sdk --no-ui --all --force --filter \
         extra-google-m2repository,extra-android-support,extra-android-m2repository \
     && echo y | android update sdk --no-ui --all --force --filter \
