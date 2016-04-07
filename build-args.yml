@@ -1,6 +1,7 @@
 repo: izumin5210/android
 tag: "build-tools-%{build_tools}_target-api-%{target_api}"
 build-tools:
+  - "23.0.3"
   - "23.0.2"
   - "23.0.1"
 target-api:
