@@ -41,7 +41,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 # android sdk
 # ================================================================
 
-ENV ANDROID_SDK_REVISION 24.3.4
+ENV ANDROID_SDK_REVISION 24.4.1
 
 RUN curl -L -O "http://dl.google.com/android/android-sdk_r$ANDROID_SDK_REVISION-linux.tgz" \
     && tar -xvzf "android-sdk_r$ANDROID_SDK_REVISION-linux.tgz" \
