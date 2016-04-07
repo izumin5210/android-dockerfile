@@ -1,4 +1,6 @@
 # Docker images for Android app/library
+[![Circle CI](https://circleci.com/gh/izumin5210/android-dockerfile/tree/master.svg?style=svg)](https://circleci.com/gh/izumin5210/android-dockerfile/tree/master)
+
 ## Usage
 Edit your settings:
 
