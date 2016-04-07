@@ -1,0 +1,15 @@
+machine:
+  ruby:
+    version: 2.3.0
+  services:
+    - docker
+
+dependencies:
+  override:
+    - bundle install
+    - docker info
+    - rake build
+
+test:
+  override:
+    - rake test
