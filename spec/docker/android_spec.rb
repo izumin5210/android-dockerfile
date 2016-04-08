@@ -10,6 +10,7 @@ describe "DockerImage" do
       before(:all) do
         docker_image = Docker::Image.get(image.fullname)
         set :backend, :docker
+        set :os, family: 'ubuntu', arch: 'x86_64'
         set :docker_url, ENV['DOCKER_HOST']
         set :docker_image, docker_image.id
       end
