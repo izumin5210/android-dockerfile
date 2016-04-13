@@ -14,4 +14,4 @@ dependencies:
 
 test:
   override:
-    - rake spec
+    - rake spec:docker:android:all

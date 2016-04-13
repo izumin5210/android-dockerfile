@@ -33,6 +33,24 @@ namespace :spec do
       t.pattern = "spec/#{original_target}/*_spec.rb"
     end
   end
+
+  namespace :docker do
+    namespace :android do
+      task :all => images.map(&:tag)
+      task :default => :all
+
+      images.each do |image|
+        desc "Run serverspec tests to #{image.fullname}"
+        RSpec::Core::RakeTask.new(image.tag) do |t|
+          ENV['TARGET_HOST'] = 'docker'
+          ENV['ANDROID_IMAGE_NAME'] = image.fullname
+          ENV['ANDROID_BUILD_TOOLS'] = image.build_tools
+          ENV['ANDROID_TARGET_API'] = image.target_api
+          t.pattern = "spec/docker/*_spec.rb"
+        end
+      end
+    end
+  end
 end
 
 namespace :build do
