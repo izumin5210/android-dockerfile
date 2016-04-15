@@ -12,6 +12,10 @@ dependencies:
     - docker info
     - rake build
 
+test:
+  override:
+    - echo "skip test"
+
 deployment:
   hub: 
     branch: master
