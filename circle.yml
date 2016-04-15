@@ -12,10 +12,6 @@ dependencies:
     - docker info
     - rake build
 
-test:
-  override:
-    - rake spec:docker:android:all
-
 deployment:
   hub: 
     branch: master
