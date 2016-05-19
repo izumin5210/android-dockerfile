@@ -27,7 +27,7 @@ RUN dpkg --add-architecture i386 \
 # gradle
 # ================================================================
 
-ENV GRADLE_VERSION 2.6
+ENV GRADLE_VERSION 2.13
 RUN curl -L -O "http://services.gradle.org/distributions/gradle-$GRADLE_VERSION-all.zip" \
     && unzip -q -o "gradle-$GRADLE_VERSION-all.zip" \
     && mv "gradle-$GRADLE_VERSION" "/usr/local/gradle-$GRADLE_VERSION" \
